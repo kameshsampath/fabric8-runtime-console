@@ -28,6 +28,10 @@ export const resourceMenus = [
     name: "Services",
     path: "services",
   },
+  {
+    name: "BugHunter",
+    path: "bughunter",
+  },
 ];
 
 @Component({

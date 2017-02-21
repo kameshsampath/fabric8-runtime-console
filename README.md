@@ -119,7 +119,7 @@ ipaas-client/
  │   │   │
  │   │   ├──app.component.ts      * a simple version of our App component components
  │   │   ├──app.e2e.ts            * a simple end-to-end test for /
- │   │   └──app.spec.ts           * a simple test of components in app.ts
+ │   │   └──app.spec.ts           * a simple test of components in buginfoapp.model.ts
  │   │
  │   ├──assets/                   * static assets are served here
  │   │   ├──robots.txt            * for search engines to crawl your website

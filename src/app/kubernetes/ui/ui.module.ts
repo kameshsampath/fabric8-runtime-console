@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'namespaces/:namespace/replicasets', loadChildren: './replicaset/replicaset.module#ReplicaSetModule' },
   { path: 'namespaces/:namespace/pods', loadChildren: './pod/pod.module#PodModule' },
   { path: 'namespaces/:namespace/services', loadChildren: './service/service.module#ServiceModule' },
+  { path: 'namespaces/:namespace/bughunter', loadChildren: './bughunter/bughunter.module#BugHunterModule' },
   { path: 'namespace', loadChildren: './namespace/namespace.module#NamespaceModule' },
   { path: 'spaces', loadChildren: './space/space.module#SpaceModule' },
 ];

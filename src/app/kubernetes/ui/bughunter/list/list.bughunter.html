@@ -1,0 +1,47 @@
+<div class='list-group list-view-pf list-view-pf-view'>
+
+  <fabric8-loading [loading]="loading">
+    <div class='list-group-item pod' *ngFor='let bugsInfo of bugsInfos'>
+      <div class='list-view-pf-checkbox'>
+        <input type='checkbox'>
+      </div>
+      <div class='list-view-pf-main-info'>
+        <div class='list-view-pf-body'>
+          <div class='list-view-pf-description'>
+            <div class='list-group-item-heading'>
+              <a [routerLink]="[bugsInfo.id]" class="card-title">{{ bugsInfo.id}}</a>
+            </div>
+            <div class='list-group-item-text'>
+              <span class="">
+                   {{bugsInfo.logMessage | truncate:40}}
+               </span>
+            </div>
+            <div class='list-view-pf-additional-info-item'>
+              <span class="">{{bugsInfo.score}}</span>
+            </div>
+            <div class='list-view-pf-additional-info-item' title="exeception time">
+              {{bugsInfo.timestamp | amTimeAgo}}
+            </div>
+          </div>
+          <div class='list-view-pf-additional-info'>
+            <div class='list-view-pf-additional-info-item'>
+              <span class=""><b>containerName:</b>{{bugsInfo.pod.containerName}}</span>
+              <span class=""><b>host:</b>{{bugsInfo.pod.host}}</span>
+              <span class=""><b>namespace:</b>{{bugsInfo.pod.namespace}}</span>
+              <span class=""><b>podName:</b>{{bugsInfo.pod.podName}}</span>
+            </div>
+          </div>
+          <div class='list-view-pf-additional-info'>
+            <div class='list-view-pf-additional-info-item'>
+              <span class=""><b>group:</b>{{bugsInfo.app.branch}}</span>
+              <span class=""><b>project:</b>{{bugsInfo.app.project}}</span>
+              <span class=""><b>version:</b>{{bugsInfo.app.version}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fabric8-loading>
+</div>
+
+
