@@ -1,41 +1,38 @@
 <div class='list-group list-view-pf list-view-pf-view'>
 
   <fabric8-loading [loading]="loading">
-    <div class='list-group-item pod' *ngFor='let bugsInfo of bugsInfos'>
-      <div class='list-view-pf-checkbox'>
-        <input type='checkbox'>
+    <div class='list-group-item buginfo' *ngFor='let buginfo of bugsInfos'>
+
+      <div class='list-view-pf-actions'>
+        <div class='dropdown pull-right dropdown-kebab-pf'>
+          <button class='btn btn-link dropdown-toggle' type='button' id='dropdownKebabRight9' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>
+            <span class='fa fa-ellipsis-v'></span>
+          </button>
+          <ul class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownKebabRight9'>
+            <li>
+              <a [routerLink]="[buginfo.id, 'details']">Details</a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class='list-view-pf-main-info'>
         <div class='list-view-pf-body'>
           <div class='list-view-pf-description'>
             <div class='list-group-item-heading'>
-              <a [routerLink]="[bugsInfo.id]" class="card-title">{{ bugsInfo.id}}</a>
+              <span class="">{{buginfo.appProject}}</span>
             </div>
             <div class='list-group-item-text'>
-              <span class="">
-                   {{bugsInfo.logMessage | truncate:40}}
+              <span class="" title="Exception trace">
+                   {{buginfo.logMessage | truncate:80}}
                </span>
             </div>
-            <div class='list-view-pf-additional-info-item'>
-              <span class="">{{bugsInfo.score}}</span>
-            </div>
-            <div class='list-view-pf-additional-info-item' title="exeception time">
-              {{bugsInfo.timestamp | amTimeAgo}}
-            </div>
           </div>
           <div class='list-view-pf-additional-info'>
-            <div class='list-view-pf-additional-info-item'>
-              <span class=""><b>containerName:</b>{{bugsInfo.pod.containerName}}</span>
-              <span class=""><b>host:</b>{{bugsInfo.pod.host}}</span>
-              <span class=""><b>namespace:</b>{{bugsInfo.pod.namespace}}</span>
-              <span class=""><b>podName:</b>{{bugsInfo.pod.podName}}</span>
+            <div class='list-view-pf-additional-info-item' title="exception time">
+              <span class="">{{buginfo.timestamp | date:'medium'}}</span>
             </div>
-          </div>
-          <div class='list-view-pf-additional-info'>
-            <div class='list-view-pf-additional-info-item'>
-              <span class=""><b>group:</b>{{bugsInfo.app.branch}}</span>
-              <span class=""><b>project:</b>{{bugsInfo.app.project}}</span>
-              <span class=""><b>version:</b>{{bugsInfo.app.version}}</span>
+            <div class='list-view-pf-additional-info-item' title="application details">
+              <span class="">{{buginfo.podHost}}|{{buginfo.podNamespace}}:{{buginfo.podName}}</span>
             </div>
           </div>
         </div>
