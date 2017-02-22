@@ -8,9 +8,14 @@ import {Fabric8CommonModule} from "../../../common/common.module";
 
 import {BugHunterListComponent} from "./list/list.bughunter";
 import {BugHunterListPage} from "./list-page/list-page.bughunter";
+import {BugHunterViewWrapperComponent} from "./view-wrapper/view-wrapper.bughunter";
+import {BugHunterViewPage} from "./view-page/view-page.bughunter";
+import {BugHunterViewToolbarComponent} from "./view-toolbar/view-toolbar.bughunter";
+import {BugHunterViewComponent} from "./view/view.bughunter";
 
 const routes: Routes = [
-  { path: '', component: BugHunterListPage }
+  { path: '', component: BugHunterListPage },
+  { path: ':id', component: BugHunterViewPage }
 ]
 
 @NgModule({
@@ -23,7 +28,11 @@ const routes: Routes = [
   ],
   declarations: [
     BugHunterListPage,
+    BugHunterViewPage,
     BugHunterListComponent,
+    BugHunterViewComponent,
+    BugHunterViewWrapperComponent,
+    BugHunterViewToolbarComponent,
   ],
   entryComponents: [
     BugHunterListPage,

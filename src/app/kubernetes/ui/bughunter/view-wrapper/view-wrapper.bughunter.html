@@ -1,0 +1,4 @@
+<div class='buginfo detail' *ngIf='bugInfo'>
+  <fabric8-bughunter-view-toolbar [bugInfo]="bugInfo | async"></fabric8-bughunter-view-toolbar>
+  <fabric8-bughunter-view [bugInfo]="bugInfo | async"></fabric8-bughunter-view>
+</div>

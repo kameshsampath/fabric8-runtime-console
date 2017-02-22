@@ -1,0 +1,52 @@
+<div class="row row-cards-pf center" *ngIf="bugInfo">
+
+  <div class="col-xs-12">
+    <span class="name">
+      <span class="pull-right">logged on {{bugInfo.timestamp | date:'medium'}}</span>
+    </span>
+  </div>
+
+  <div class="col-xs-12">
+    <h3>Details</h3>
+    <dl class="dl-horizontal left">
+      <dt>Application:</dt>
+      <dd title="{{bugInfo.appGroup}}">Group:&nbsp;&nbsp;{{bugInfo.appGroup}}</dd>
+      <dd title="{{bugInfo.appProject}}">Name:&nbsp;&nbsp;{{bugInfo.appProject}}</dd>
+      <dd title="{{bugInfo.appVersion}}">Version:&nbsp;&nbsp;{{bugInfo.appVersion}}</dd>
+      <dd title="{{bugInfo.appBranch}}" *ngIf="bugInfo.appBranch">Branch:&nbsp;&nbsp;{{bugInfo.appBranch}}</dd>
+      <dd title="{{bugInfo.appRevision}}" *ngIf="bugInfo.appRevision">Revision:&nbsp;&nbsp;{{bugInfo.appRevision}}</dd>
+      <dd title="{{bugInfo.appIssueTrackerUrl}}">
+        IssueTracker:&nbsp;&nbsp;
+        <span class='open-service-icon'>
+                <a target="bugInfo"
+                   class="external-service"
+                   *ngIf="bugInfo.appIssueTrackerUrl"
+                   [href]="bugInfo.appIssueTrackerUrl"
+                   title="File a bug on the Project Issues {{bugInfo.appIssueTrackerUrl || ''}} directly in a separate browser tab">
+                  <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+        </span>
+      </dd>
+      <dd title="{{bugInfo.appProjectUrl}}">
+        Project Url:&nbsp;&nbsp;
+        <span class='open-service-icon'>
+                <a target="bugInfo"
+                   class="external-service"
+                   *ngIf="bugInfo.appProjectUrl"
+                   [href]="bugInfo.appProjectUrl"
+                   title="Open project site {{bugInfo.appProjectUrl || ''}} directly in a separate browser tab">
+                  <i class="fa fa-external-link" aria-hidden="true"></i>
+                </a>
+        </span>
+      </dd>
+      <dt>Pod:</dt>
+      <dd title="{{bugInfo.podHost}}">Host:&nbsp;&nbsp;{{bugInfo.podHost}}</dd>
+      <dd title="{{bugInfo.podNamespace}}">Namespace:&nbsp;&nbsp;{{bugInfo.podNamespace}}</dd>
+      <dd title="{{bugInfo.podName}}">Name:&nbsp;&nbsp;{{bugInfo.podName}}</dd>
+    </dl>
+    <h3>Exception log</h3>
+    <textarea id="logMessage" name="logMessage" readonly class="form-control" rows="5" cols="80"
+              value="{{bugInfo.logMessage}}">
+    </textarea>
+  </div>
+</div>
