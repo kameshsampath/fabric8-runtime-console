@@ -23,13 +23,13 @@
             </div>
             <div class='list-group-item-text'>
               <span class="" title="Exception trace">
-                   {{buginfo.logMessage | truncate:80}}
+                   {{buginfo.logMessage | truncate:120}}
                </span>
             </div>
           </div>
           <div class='list-view-pf-additional-info'>
             <div class='list-view-pf-additional-info-item' title="exception time">
-              <span class="">{{buginfo.timestamp | date:'medium'}}</span>
+              <span class="">{{buginfo.timestamp | date:'short'}}</span>
             </div>
             <div class='list-view-pf-additional-info-item' title="application details">
               <span class="">{{buginfo.podHost}}|{{buginfo.podNamespace}}:{{buginfo.podName}}</span>

@@ -12,6 +12,7 @@ import {BugHunterViewWrapperComponent} from "./view-wrapper/view-wrapper.bughunt
 import {BugHunterViewPage} from "./view-page/view-page.bughunter";
 import {BugHunterViewToolbarComponent} from "./view-toolbar/view-toolbar.bughunter";
 import {BugHunterViewComponent} from "./view/view.bughunter";
+import {BugHunterStore} from "../../store/bughunter.store";
 
 const routes: Routes = [
   { path: '', component: BugHunterListPage },
@@ -33,6 +34,9 @@ const routes: Routes = [
     BugHunterViewComponent,
     BugHunterViewWrapperComponent,
     BugHunterViewToolbarComponent,
+  ],
+  providers:[
+    BugHunterStore,
   ],
   entryComponents: [
     BugHunterListPage,
