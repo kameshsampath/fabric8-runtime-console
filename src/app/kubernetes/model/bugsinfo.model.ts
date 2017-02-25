@@ -1,4 +1,5 @@
 export class BugsInfo {
+  docId: string;
   id: string;
   count: number;
   logMessage: string;
@@ -19,7 +20,9 @@ export class BugsInfo {
   podId: string;
   podName: string;
 
-  constructor(data: any) {
+  constructor(docId: string, data: any) {
+    this.docId = docId;
+
     var bugInfo = data || {};
     //flattening the JSON for easier view output
     this.id = bugInfo.id;
@@ -27,17 +30,21 @@ export class BugsInfo {
     this.logMessage = bugInfo.logMessage;
     this.score = bugInfo.score;
     this.timestamp = bugInfo.timestamp;
-    this.appBranch = bugInfo.app.branch;
-    this.appGroup = bugInfo.app.group;
-    this.appIssueTrackerUrl = bugInfo.app.issueTrackerUrl;
-    this.appProject = bugInfo.app.project;
-    this.appProjectUrl = bugInfo.app.projectUrl;
-    this.appRevision = bugInfo.app.revision;
-    this.podContainerName = bugInfo.pod.containerName;
-    this.podHost = bugInfo.pod.host;
-    this.podId = bugInfo.pod.podId;
-    this.podName = bugInfo.pod.podName;
-    this.podNamespace = bugInfo.pod.namespace;
+    if (bugInfo.app) {
+      this.appBranch = bugInfo.app.branch;
+      this.appGroup = bugInfo.app.group;
+      this.appIssueTrackerUrl = bugInfo.app.issueTrackerUrl;
+      this.appProject = bugInfo.app.project;
+      this.appProjectUrl = bugInfo.app.projectUrl;
+      this.appRevision = bugInfo.app.revision;
+    }
+    if (bugInfo.pod) {
+      this.podContainerName = bugInfo.pod.containerName;
+      this.podHost = bugInfo.pod.host;
+      this.podId = bugInfo.pod.podId;
+      this.podName = bugInfo.pod.podName;
+      this.podNamespace = bugInfo.pod.namespace;
+    }
   }
 }
 

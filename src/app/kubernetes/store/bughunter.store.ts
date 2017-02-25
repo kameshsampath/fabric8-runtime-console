@@ -13,13 +13,15 @@ import {Http} from "@angular/http";
 export class BugHunterStore {
 
   //TODO !!!! Lookup service url within.. !!!
-  _bughunterUri: string = "/elasticsearch/bughunter/_search";
+  _bughunterUri: string = "/elasticsearch/bughunter";
 
   protected _bugsInfos = new BugsInfos();
 
   protected _bugsInfo: BehaviorSubject<BugsInfos> = new BehaviorSubject(this._bugsInfos);
 
   protected _loading: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+  protected _current: BehaviorSubject<BugsInfo> = new BehaviorSubject(new BugsInfo(null, null));
 
   constructor(private http: Http) {
     this.query();
@@ -33,11 +35,15 @@ export class BugHunterStore {
     return this._bugsInfo.asObservable();
   }
 
+  get resource(): Observable<BugsInfo> {
+    return this._current.asObservable();
+  }
+
   protected query() {
 
     this._loading.next(true);
 
-    this.http.get(this._bughunterUri)
+    this.http.get(this._bughunterUri + "/_search")
       .subscribe(
         (res) => {
 
@@ -46,7 +52,7 @@ export class BugHunterStore {
           //TODO -- am I observable ..
           if (data && data.hits && data.hits.hits) {
             data.hits.hits.forEach(hit => {
-              this._bugsInfos.push(new BugsInfo(hit._source));
+              this._bugsInfos.push(new BugsInfo(hit._id, hit._source));
             });
           }
           this._loading.next(false);
@@ -58,4 +64,23 @@ export class BugHunterStore {
       );
   }
 
+  load(id: any) {
+    this._loading.next(true);
+    this.http.get(this._bughunterUri + "/bugs/" + id)
+      .subscribe(
+        (res) => {
+
+          let data = res.json();
+
+          if (data) {
+            this._current.next(new BugsInfo(data._id,data._source));
+          }
+          this._loading.next(false);
+        },
+        (err) => {
+          console.log("Error loading Bug Hunter Bug details for id :" + id, err);
+          this._loading.next(false);
+        }
+      );
+  }
 }
